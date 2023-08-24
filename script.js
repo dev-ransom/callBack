@@ -49,3 +49,10 @@ order(2000, ()=> console.log(`${stocks.Fruits[0]} was selected`))
     return order(2000, ()=> console.log(`The ice was placed on ${stocks.Holders[2]}`))
 })
 
+.then(()=> {
+    return order(3000, ()=> console.log(`${stocks.Toppings[1]} was selected as toppings`))
+})
+
+.then(() =>{
+    return order(2000, ()=> console.log('Serve the ice cream to the customer'))
+})
