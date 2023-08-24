@@ -12,39 +12,39 @@ const stocks = {
     Toppings: ['chocolate', 'peanuts'],
 };
 
+let order = (Fruit_name, callproduction) => {
+    let ord_message = `${stocks.Fruits[Fruit_name]} was selected`;
+    setTimeout(() => {
+        console.log(ord_message);
+        callproduction();
+    }, 2000);
+};
 
-let is_shop_open = true;
-
-let order = (time, work) =>{
-    
 
 
-   return new Promise((resolve, reject)=>{
-        if(is_shop_open){
+let production = () => {
+    let pro_message = 'start production'
+    setTimeout(() => {
+        console.log(pro_message);
+        setTimeout(() => {
+            console.log('the fruit has been chopped!');
             setTimeout(() =>{
-                resolve(work())
-            }, time)
-        }else{
-            reject(console.log('our shop is closed'))
-        }
-   })
-}
-// original promise
-order(2000, ()=> console.log(`${stocks.Fruits[0]} was selected`))
+                console.log(`${stocks.Liquids[0]} and ${stocks.Liquids[1]} was added`);
+                setTimeout(()=>{
+                    console.log('The machine was started');
+                    setTimeout(() =>{
+                        console.log(`ice cream was placed on ${stocks.Holders[1]}`)
+                        setTimeout(()=>{
+                            console.log(`${stocks.Toppings[1]} was added as toppings`);
+                            setTimeout(()=> {
+                                console.log('Serve Ice Cream');
+                            }, 2000);
+                        }, 3000);
+                    }, 2000)
+                }, 1000);
+            }, 1000);
+        }, 2000);
+    },0);
+};
 
-// thens
-.then(()=>{
-    return order(0, ()=> console.log('production has started'))
-})
-
-.then(() =>{
-    return order(2000, ()=> console.log('the fruit has been chopped'))
-})
-
-.then(() =>{
-    return order(2000, ()=> console.log(`${stocks.Liquids[0]} and ${stocks.Liquids[1]} was selected`))
-})
-
-.then(function(){
-    return order(1000, function() console.log())
-})
+order(2, production);
