@@ -11,40 +11,41 @@ const stocks = {
     Holders: ['cone', 'cup', 'stick'],
     Toppings: ['chocolate', 'peanuts'],
 };
+// arrow function
+let is_shop_open = true;
 
-let order = (Fruit_name, callproduction) => {
-    let ord_message = `${stocks.Fruits[Fruit_name]} was selected`;
-    setTimeout(() => {
-        console.log(ord_message);
-        callproduction();
-    }, 2000);
-};
+let order = (time, work) =>{
+    return new Promise((resolve, reject)=>{
+        if(is_shop_open){
+            setTimeout(()=>{
+                resolve(work())
+            }, time)
+        }else{
+            reject(console.log('our shop is closed'))
+        }
+        
+    })
+}
+// main promises
+order(2000, ()=> console.log(`${stocks.Fruits[0]} was selected`))
 
+.then(()=>{
+    return order(0, ()=> console.log('production has started'))
+})
 
+.then(() =>{
+    return order(2000, ()=> console.log('The fruit has been chopped'))
+})
 
-let production = () => {
-    let pro_message = 'start production'
-    setTimeout(() => {
-        console.log(pro_message);
-        setTimeout(() => {
-            console.log('the fruit has been chopped!');
-            setTimeout(() =>{
-                console.log(`${stocks.Liquids[0]} and ${stocks.Liquids[1]} was added`);
-                setTimeout(()=>{
-                    console.log('The machine was started');
-                    setTimeout(() =>{
-                        console.log(`ice cream was placed on ${stocks.Holders[1]}`)
-                        setTimeout(()=>{
-                            console.log(`${stocks.Toppings[1]} was added as toppings`);
-                            setTimeout(()=> {
-                                console.log('Serve Ice Cream');
-                            }, 2000);
-                        }, 3000);
-                    }, 2000)
-                }, 1000);
-            }, 1000);
-        }, 2000);
-    },0);
-};
+.then(() =>{
+    return order(1000, ()=> console.log(`${stocks.Liquids[0]} and ${stocks.Liquids[1]} were selected`))
+})
 
-order(2, production);
+.then(() =>{
+    return order(1000, ()=> console.log('start the machine'))
+})
+
+.then(()=>{
+    return order(2000, ()=> console.log(`The ice was placed on ${stocks.Holders[2]}`))
+})
+
