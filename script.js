@@ -61,6 +61,10 @@ order(2000, ()=> console.log(`${stocks.Fruits[0]} was selected`))
     console.log('customer left the shop')
 })
 
+.finally(()=>{
+    console.log('day ended, shop is closed')
+})
+
 // regular function 
 // let order = function(time, work){
 //     return new Promise(function(resolve, reject){
