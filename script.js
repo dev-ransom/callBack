@@ -18,7 +18,7 @@ let toppings_choice = ()=>{
     return new Promise((resolve, reject)=>{
         setTimeout(()=>{
             resolve(console.log("which toppings do you like? "))
-        }, 2000)
+        }, 3000)
     })
 }
 
@@ -35,4 +35,4 @@ kitchen()
 
 console.log("doing dishes")
 console.log("cleaning the tables")
-console.log("preparing to add the toppings")
+console.log("taking others order")
